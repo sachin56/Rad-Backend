@@ -33,10 +33,28 @@ class RolesAndPermissionsSeeder extends Seeder
             'user-edit',
             'user-delete',
 
+            'cutomer-management',
+
             'cutomer-view',
-            'cutomer-create',
             'cutomer-edit',
             'cutomer-delete',
+
+            'general-management',
+
+            'menu-view',
+            'menu-create',
+            'menu-edit',
+            'menu-delete',
+
+            'pet-management',
+
+            'register-pet-view',
+            'register-pet-edit',
+            'register-pet-delete',
+
+            'e-book-view',
+            'e-book-edit',
+            'e-book-delete',
      
             'notification-view'
         ];

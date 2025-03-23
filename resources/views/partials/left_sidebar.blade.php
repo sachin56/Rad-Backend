@@ -14,14 +14,6 @@
                         <span data-key="t-dashboard">Dashboard</span>
                     </a>
                 </li>
-                {{-- @can('cutomer-view')
-                    <li>
-                        <a href="{{route('customer.index')}}">
-                            <i class="bi bi-pencil-square"></i>
-                            <span data-key="t-dashboard">Customer</span>
-                        </a>
-                    </li>
-                @endcan --}}
 
                 @can('cutomer-view')
                     <li>
@@ -38,16 +30,27 @@
                                     </a>
                                 </li>
                             @endcan
-                            {{-- @can('product-create')
-                                <li>
-                                    <a href="{{route('customer.create-news')}}">
-                                        <i class="fa fa-long-arrow-alt-right"></i>
-                                        <span data-key="t-dashboard">Add Customer</span>
-                                    </a>
-                                </li>
-                            @endcan --}}
                         </ul>
                     </li>
+                @endcan
+
+                @can('general-management')
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow">
+                        <i class="bi bi-app-indicator"></i>
+                        <span data-key="t-dashboard">General Parameters</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        @can('menu-view')
+                            <li>
+                                <a href="{{route('menu.index')}}">
+                                    <i class="fa fa-long-arrow-alt-right"></i>
+                                    <span data-key="t-dashboard">Menu</span>
+                                </a>
+                            </li>
+                        @endcan
+                    </ul>
+                </li>
                 @endcan
 
                 {{-- @can('order-management')

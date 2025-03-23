@@ -4,7 +4,7 @@
     $('#brand').addClass('active');
 
     //brand datatable
-    var table=$('#brand_table').DataTable( {
+    var table=$('#menu_table').DataTable( {
         dom: "<'row'<'col-sm-4'l><'col-sm-4'B><'col-sm-4'f>>" +
             "<'row'<'col-sm-12'tr>>" +
             "<'row'<'col-sm-4'i><'col-sm-8'p>>",
@@ -40,13 +40,14 @@
         "serverSide": true,
         "bSort" : false,
         "ajax": {
-            url: "get-brand"
+            url: "admin/general-management/menu/get-menu",
         },
         // orderCellsTop: true,
         fixedHeader: true,
         "columns": [
             {data:"brandName"},
             {data:"logo"},
+            {data:"activation"},
             {data:"action",searchable:false,orderable:false,sortable:false}//action
         ],
         "language": {

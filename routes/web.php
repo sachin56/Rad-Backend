@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Admin\MenuController;
 use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\DashboardController;
 
@@ -39,6 +40,23 @@ Route::group(['middleware' => ['auth']], function () {
             Route::put('/update/{id}', [CustomerController::class, 'update'])->name('update');
             Route::get('get-customer', [CustomerController::class, 'getAjaxtCustomerData'])->name('get-customer');
 
+        });
+
+        Route::prefix('general-management')->group(function () {
+            Route::group([
+                'prefix' => 'menu',
+                'as' => 'menu.'
+            ], function () {
+                Route::get('/', [MenuController::class, 'index'])->name('index');
+                Route::get('/create', [MenuController::class, 'create'])->name('create');
+                Route::post('/store', [MenuController::class, 'store'])->name('store');
+                Route::get('/edit/{id}', [MenuController::class, 'show'])->name('show');
+                Route::get('/get-menu', [MenuController::class, 'getAjaxMenuData'])->name('get-menu');
+                Route::put('/update/{id}', [MenuController::class, 'update'])->name('update');
+                Route::get('/change-status/{id}', [MenuController::class, 'activation'])->name('change-status');
+                Route::delete('/delete/{id}', [MenuController::class, 'destroy'])->name('delete');
+
+            });
         });
     });
 
