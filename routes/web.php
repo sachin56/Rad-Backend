@@ -5,6 +5,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\MenuController;
 use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\RegisteredPetController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -58,6 +59,24 @@ Route::group(['middleware' => ['auth']], function () {
 
             });
         });
+
+        Route::prefix('pet-management')->group(function () {
+
+            Route::group([
+                'prefix' => 'registerd-pet',
+                'as' => 'registerd-pet.'
+            ], function () {
+                Route::get('/', [RegisteredPetController::class, 'index'])->name('index');
+                Route::get('/edit/{id}', [RegisteredPetController::class, 'show'])->name('show');
+                Route::get('/change-status/{id}', [RegisteredPetController::class, 'activation'])->name('change-status');
+
+                Route::get('get-pet', [RegisteredPetController::class, 'getAjaxtPetData'])->name('get-pet');
+
+    
+            });
+
+        });
+
     });
 
 });

@@ -53,6 +53,26 @@
                 </li>
                 @endcan
 
+
+                @can('pet-management')
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow">
+                        <i class="bi bi-app-indicator"></i>
+                        <span data-key="t-dashboard">Pet Parameters</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        @can('register-pet-view')
+                            <li>
+                                <a href="{{route('registerd-pet.index')}}">
+                                    <i class="fa fa-long-arrow-alt-right"></i>
+                                    <span data-key="t-dashboard">Registerd Pet</span>
+                                </a>
+                            </li>
+                        @endcan
+                    </ul>
+                </li>
+                @endcan
+
                 {{-- @can('order-management')
                     <li>
                         <a href="javascript: void(0);" class="has-arrow">
