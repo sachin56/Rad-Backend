@@ -144,10 +144,3 @@
         <div class="col-lg-1"></div>
     </div>
 @endsection
-@section('scripts')
-    <script>
-
-
-        
-    </script>
-@endsection
