@@ -1,12 +1,7 @@
-@extends('layouts.masternonauth')
-
-@section('title', 'Login')
-
-@section('headerStyle')
-    <link rel="stylesheet" media="screen, print" href="{{ url('public/assets/css/fa-brands.css') }}">
-    <link rel="stylesheet" media="screen, print" href="{{ url('public/assets/css/themes/login.css') }}">
-@stop
-
+@extends('layouts.auth')
+@section('title')
+    {{ __('Login') }}
+@endsection
 @section('content')
 <form method="POST" class="mt-4 pt-2" action="{{route('login')}}">
     @csrf
@@ -58,25 +53,4 @@
         <button class="btn btn-primary w-100 waves-effect waves-light" type="submit">Log In</button>
     </div>
 </form>
-    <!-- BEGIN Color profile -->
-    <!-- this area is hidden and will not be seen on screens or screen readers -->
-    @include('layouts/partials/color-profile')
-@stop
-
-@section('footerScript')
-    <script>
-        $("#js-login-btn").click(function(event) {
-
-            // Fetch form to apply custom Bootstrap validation
-            var form = $("#js-login")
-
-            if (form[0].checkValidity() === false) {
-                event.preventDefault()
-                event.stopPropagation()
-            }
-
-            form.addClass('was-validated');
-            // Perform ajax submit here...
-        });
-    </script>
-@stop
+@endsection

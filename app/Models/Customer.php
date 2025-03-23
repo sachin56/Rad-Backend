@@ -22,4 +22,15 @@ class Customer extends Model
         'phone_verified_at',
         'password',
     ];
+
+
+    // public function hasRole($roleName)
+    // {
+    //     return $this->roles->contains('name', $roleName);
+    // }
+
+    public function hasRole($roleName)
+    {
+        return $this->roles()->where('name', $roleName)->exists();
+    }
 }
