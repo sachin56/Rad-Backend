@@ -29,11 +29,11 @@ class ApiPetRegisterController extends Controller
             
             if ($request->hasFile('pet_image')) {
                 $imgName = null;
-                if ($request->profile_image) {
-                    $imageExtension = $request->profile_image->extension();
+                if ($request->pet_image) {
+                    $imageExtension = $request->pet_image->extension();
                     $imgName = date('m-d-Y_H-i-s') . '-' . uniqid() . '.' . $imageExtension;
 
-                    $uploadUrl = (new StorageHelper('petimges', $imgName, $request->profile_image))->uploadImage();
+                    $uploadUrl = (new StorageHelper('petimges', $imgName, $request->pet_image))->uploadImage();
                 }
             }
     

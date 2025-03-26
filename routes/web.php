@@ -7,13 +7,7 @@ use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\RegisteredPetController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -24,12 +18,7 @@ Route::middleware('auth')->group(function () {
 Route::group(['middleware' => ['auth']], function () {
 
     Route::prefix('admin')->group(function () {
-        Route::group([
-            'prefix' => 'dashboard',
-            'as' => 'dashboard.'
-        ], function () {
-            Route::get('/', [DashboardController::class, 'index'])->name('index');
-        });
+        Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
         Route::group([
             'prefix' => 'customer',

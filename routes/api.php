@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\ApiPetController;
 use App\Http\Controllers\Api\ApiMenuController;
 use App\Http\Controllers\Api\ApiLoginController;
 use App\Http\Controllers\Api\ApiRegisterController;
@@ -15,14 +16,16 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::prefix('general-management')->group(function () {
 
         Route::prefix('menu')->group(function () {
-            Route::get('/', [ApiMenuController::class, 'index']);
+            Route::post('/', [ApiMenuController::class, 'index']);
         });
 
     });
 
     Route::prefix('pet-management')->group(function () {
-
+        Route::post('/get-all-pet', [ApiPetController::class, 'index']);
+        Route::post('/show-pet', [ApiPetController::class, 'show']);
         Route::post('/register', [ApiPetRegisterController::class, 'store']);
+        Route::post('/update-pet', [ApiPetController::class, 'Update']);
 
     });
 

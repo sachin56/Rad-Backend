@@ -9,7 +9,7 @@
                 <li class="menu-title" data-key="t-menu">Menu</li>
 
                 <li>
-                    <a href="{{route('dashboard.index')}}">
+                    <a href="{{route('dashboard')}}">
                         <i class="bi bi-house-door-fill"></i>
                         <span data-key="t-dashboard">Dashboard</span>
                     </a>
