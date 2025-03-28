@@ -9,7 +9,7 @@
                 <li class="menu-title" data-key="t-menu">Menu</li>
 
                 <li>
-                    <a href="{{route('dashboard.index')}}">
+                    <a href="{{route('dashboard')}}">
                         <i class="bi bi-house-door-fill"></i>
                         <span data-key="t-dashboard">Dashboard</span>
                     </a>
@@ -38,7 +38,7 @@
                 <li>
                     <a href="javascript: void(0);" class="has-arrow">
                         <i class="bi bi-app-indicator"></i>
-                        <span data-key="t-dashboard">General Parameters</span>
+                        <span data-key="t-dashboard">General Management</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
                         @can('menu-view')
@@ -58,7 +58,7 @@
                 <li>
                     <a href="javascript: void(0);" class="has-arrow">
                         <i class="bi bi-app-indicator"></i>
-                        <span data-key="t-dashboard">Pet Parameters</span>
+                        <span data-key="t-dashboard">Pet Management</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
                         @can('register-pet-view')
@@ -66,6 +66,25 @@
                                 <a href="{{route('registerd-pet.index')}}">
                                     <i class="fa fa-long-arrow-alt-right"></i>
                                     <span data-key="t-dashboard">Registerd Pet</span>
+                                </a>
+                            </li>
+                        @endcan
+                    </ul>
+                </li>
+                @endcan
+
+                @can('e-book-view')
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow">
+                        <i class="bi bi-app-indicator"></i>
+                        <span data-key="t-dashboard">E Book Management</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        @can('e-book-view')
+                            <li>
+                                <a href="{{route('e-book.index')}}">
+                                    <i class="fa fa-long-arrow-alt-right"></i>
+                                    <span data-key="t-dashboard">View E Book</span>
                                 </a>
                             </li>
                         @endcan
