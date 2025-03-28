@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\ApiPetController;
 use App\Http\Controllers\Api\ApiMenuController;
+use App\Http\Controllers\Api\ApiEbookController;
 use App\Http\Controllers\Api\ApiLoginController;
 use App\Http\Controllers\Api\ApiRegisterController;
 use App\Http\Controllers\Api\ApiPetRegisterController;
@@ -26,7 +27,11 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::post('/show-pet', [ApiPetController::class, 'show']);
         Route::post('/register', [ApiPetRegisterController::class, 'store']);
         Route::post('/update-pet', [ApiPetController::class, 'Update']);
+    });
 
+    Route::prefix('e-book')->group(function () {
+        Route::post('/', [ApiEbookController::class, 'getPetWise']);
+        Route::post('/store', [ApiEbookController::class, 'store']);
     });
 
 });

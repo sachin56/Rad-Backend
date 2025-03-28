@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\MenuController;
+use App\Http\Controllers\Admin\EBookController;
 use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\RegisteredPetController;
@@ -58,12 +59,19 @@ Route::group(['middleware' => ['auth']], function () {
                 Route::get('/', [RegisteredPetController::class, 'index'])->name('index');
                 Route::get('/edit/{id}', [RegisteredPetController::class, 'show'])->name('show');
                 Route::get('/change-status/{id}', [RegisteredPetController::class, 'activation'])->name('change-status');
-
                 Route::get('get-pet', [RegisteredPetController::class, 'getAjaxtPetData'])->name('get-pet');
-
-    
             });
 
+        });
+
+
+        Route::group([
+            'prefix' => 'e-book',
+            'as' => 'e-book.'
+        ], function () {
+            Route::get('/', [EBookController::class, 'index'])->name('index');
+            Route::get('/edit/{id}', [EBookController::class, 'show'])->name('show');
+            Route::get('get-e-book', [EBookController::class, 'getAjaxtEbookData'])->name('get-e-book');
         });
 
     });
