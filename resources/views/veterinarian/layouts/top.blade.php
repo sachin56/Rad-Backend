@@ -4,7 +4,7 @@
 <head>
 
     <meta charset="utf-8" />
-    <title>Paw Log | Admin | @yield('title')</title>
+    <title>Paw Log | Veterinarian | @yield('title')</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="" name="description" />
     <meta content="" name="author" />

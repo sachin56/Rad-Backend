@@ -49,14 +49,6 @@
                                 </a>
                             </li>
                         @endcan
-                        @can('menu-view')
-                        <li>
-                            <a href="{{route('clinics.index')}}">
-                                <i class="fa fa-long-arrow-alt-right"></i>
-                                <span data-key="t-dashboard">Clinics</span>
-                            </a>
-                        </li>
-                    @endcan
                     </ul>
                 </li>
                 @endcan
