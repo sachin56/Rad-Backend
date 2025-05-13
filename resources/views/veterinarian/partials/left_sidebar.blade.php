@@ -112,7 +112,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="{{route('e-book.index')}}">
+                                <a href="{{route('appointment.index')}}">
                                     <i class="fa fa-long-arrow-alt-right"></i>
                                     <span data-key="t-dashboard">Vet Appointment</span>
                                 </a>

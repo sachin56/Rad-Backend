@@ -13,9 +13,25 @@ class Appointment extends Model
         'doctor_id',
         'appointment_time_id',
         'location_id',
+        'appointment_status',
         'status',
         'created_by',
         'updated_by',
         'deleted_by',
     ];
+
+    public function pet()
+    {
+        return $this->belongsTo(Pet::class, 'pet_id', 'id');
+    }
+
+    public function appointmentTime()
+    {
+        return $this->belongsTo(DoctorBookingTime::class, 'appointment_time_id', 'id');
+    }
+
+    public function location()
+    {
+        return $this->belongsTo(DoctorLocation::class, 'location_id', 'id');
+    }
 }

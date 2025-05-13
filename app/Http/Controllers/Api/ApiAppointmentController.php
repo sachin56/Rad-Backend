@@ -25,10 +25,10 @@ class ApiAppointmentController extends Controller
             DB::beginTransaction(); 
             
             $appointment = new Appointment();
-            $appointment->pet_id = $request->vetid;
-            $appointment->doctor_id = $request->appoimentTime;
-            $appointment->appointment_time_id = $request->appoimentLocation;
-            $appointment->location_id = $request->petId;
+            $appointment->pet_id = $request->petId;
+            $appointment->doctor_id = $request->vetid;
+            $appointment->appointment_time_id = $request->appoimentTime;
+            $appointment->location_id = $request->appoimentLocation;
             $appointment->save();
     
             DB::commit(); 

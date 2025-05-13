@@ -9,10 +9,9 @@ use App\Http\Controllers\Admin\ClinicsController;
 use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DoctorTimeController;
-use App\Http\Controllers\Veterinarian\LoginController;
+use App\Http\Controllers\Admin\AppointmentController;
 use App\Http\Controllers\Admin\RegisteredPetController;
 use App\Http\Controllers\Admin\DoctorLocationController;
-use App\Http\Controllers\veterinarian\RegisterController;
 use App\Http\Controllers\Veterinarian\VeterinarianLoginController;
 use App\Http\Controllers\veterinarian\VeterinarianRegisterController;
 use App\Http\Controllers\Veterinarian\VeterinarianDashboardController;
@@ -88,7 +87,6 @@ Route::group(['middleware' => ['auth']], function () {
 
         });
 
-
         Route::group([
             'prefix' => 'e-book',
             'as' => 'e-book.'
@@ -108,8 +106,6 @@ Route::group(['middleware' => ['auth']], function () {
         });
 
     });
-    
-
 });
 
 Route::prefix('/veterinarian')->group(function () {
@@ -120,6 +116,18 @@ Route::prefix('/veterinarian')->group(function () {
     Route::get('/register', [VeterinarianRegisterController::class, 'index'])->name('veterinarian.register');
     Route::post('/register/store', [VeterinarianRegisterController::class, 'store'])->name('veterinarian.register.store');
     Route::post('/logout', [VeterinarianLoginController::class, 'logout'])->name('veterinarian.logout');
+
+    
+    Route::group([
+        'prefix' => 'appointment',
+        'as' => 'appointment.'
+    ], function () {
+        Route::get('/', [AppointmentController::class, 'index'])->name('index');
+        Route::post('status-change', [AppointmentController::class, 'update'])->name('status-change');
+        Route::get('/get-appointment', [AppointmentController::class, 'getAjaxAppointmentData'])->name('get-appointment');
+        Route::get('/edit/{id}', [AppointmentController::class, 'show'])->name('show');
+    });
+
 
     Route::group([
         'prefix' => 'booking-time',
@@ -148,9 +156,7 @@ Route::prefix('/veterinarian')->group(function () {
         Route::put('/update/{id}', [DoctorLocationController::class, 'update'])->name('update');
         Route::get('/change-status/{id}', [DoctorLocationController::class, 'activation'])->name('change-status');
         Route::delete('/delete/{id}', [DoctorLocationController::class, 'destroy'])->name('delete');
-
     });
-
 });
 
 require __DIR__.'/auth.php';
