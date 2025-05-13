@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Models\Pet;
+use App\Models\Appointment;
 use Illuminate\Http\Request;
 use App\Helpers\StorageHelper;
 use Illuminate\Support\Facades\DB;
@@ -15,39 +16,20 @@ class ApiAppointmentController extends Controller
     {
         try {
             $validated = $request->validate([
-                'pet_image' => 'nullable|image|mimes:jpeg,png,jpg,gif',
-                'name' => 'required|string|max:255',
-                'age' => 'required|integer|max:255',
-                'breed' => 'required|string|max:255',
-                'gender' => 'required|integer|max:255',
-                'weight' => 'required|string|max:255',
-                'medical_condition' => 'required',
-                'addition_note' => 'required',
+                'vetid' => 'required|exists:veterinarians,id',
+                'appoimentTime' => 'required|integer|max:255',
+                'appoimentLocation' => 'required|string|max:255',
+                'petId' => 'required|exists:pets,id',
             ]);
     
             DB::beginTransaction(); 
             
-            if ($request->hasFile('pet_image')) {
-                $imgName = null;
-                if ($request->pet_image) {
-                    $imageExtension = $request->pet_image->extension();
-                    $imgName = date('m-d-Y_H-i-s') . '-' . uniqid() . '.' . $imageExtension;
-
-                    $uploadUrl = (new StorageHelper('petimges', $imgName, $request->pet_image))->uploadImage();
-                }
-            }
-    
-            $pet = new Pet();
-            $pet->user_id = auth('sanctum')->user()->id ?? null;
-            $pet->name = $validated['name'];
-            $pet->age = $validated['age'];
-            $pet->breed = $validated['breed'];
-            $pet->gender = $validated['gender'];
-            $pet->weight = $validated['weight'];
-            $pet->medical_condition = $validated['medical_condition'];
-            $pet->addition_note = $validated['addition_note'];
-            $pet->logo = $imgName;
-            $pet->save();
+            $appointment = new Appointment();
+            $appointment->pet_id = $request->vetid;
+            $appointment->doctor_id = $request->appoimentTime;
+            $appointment->appointment_time_id = $request->appoimentLocation;
+            $appointment->location_id = $request->petId;
+            $appointment->save();
     
             DB::commit(); 
 

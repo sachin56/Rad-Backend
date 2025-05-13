@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::create('appointments', function (Blueprint $table) {
             $table->id();
+            $table->unsignedInteger('pet_id')->nullable();
             $table->unsignedInteger('doctor_id')->nullable();
-            $table->string('doctor_name')->nullable();
+            $table->string('doctor_id')->nullable();
             $table->string('appointment_time_id')->nullable();
             $table->string('location_id')->nullable();
             $table->char('status', 1)->default('Y')->comment('N => Inactive, Y => Active');

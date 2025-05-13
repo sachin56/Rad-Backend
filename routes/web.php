@@ -117,7 +117,7 @@ Route::prefix('/veterinarian')->group(function () {
     Route::get('/dashboard', [VeterinarianDashboardController::class, 'index'])->name('veterinarian.dashboard');
     Route::get('/login', [VeterinarianLoginController::class, 'index'])->name('veterinarian.login');
     Route::post('/login/check', [VeterinarianLoginController::class, 'checklogin'])->name('veterinarian.login.check');
-    Route::get('/ c', [VeterinarianRegisterController::class, 'index'])->name('veterinarian.register');
+    Route::get('/register', [VeterinarianRegisterController::class, 'index'])->name('veterinarian.register');
     Route::post('/register/store', [VeterinarianRegisterController::class, 'store'])->name('veterinarian.register.store');
     Route::post('/logout', [VeterinarianLoginController::class, 'logout'])->name('veterinarian.logout');
 
@@ -150,8 +150,6 @@ Route::prefix('/veterinarian')->group(function () {
         Route::delete('/delete/{id}', [DoctorLocationController::class, 'destroy'])->name('delete');
 
     });
-
-
 
 });
 

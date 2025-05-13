@@ -24,5 +24,11 @@ class Veterinarian extends Authenticatable
     protected $hidden = [
         'password',
     ];
+
+    public function clincs()
+    {
+        return $this->belongsTo(Clinics::class, 'clinic_id', 'id');
+
+    }
 }
 
