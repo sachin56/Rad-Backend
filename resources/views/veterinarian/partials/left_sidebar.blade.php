@@ -92,6 +92,36 @@
                 </li>
                 @endcan
 
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow">
+                        <i class="bi bi-app-indicator"></i>
+                        <span data-key="t-dashboard">Vet Management</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        {{-- @can('e-book-view') --}}
+                            <li>
+                                <a href="{{route('booking-time.index')}}">
+                                    <i class="fa fa-long-arrow-alt-right"></i>
+                                    <span data-key="t-dashboard">Doctor Booking Time</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{route('booking-location.index')}}">
+                                    <i class="fa fa-long-arrow-alt-right"></i>
+                                    <span data-key="t-dashboard">Doctor Location</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{route('e-book.index')}}">
+                                    <i class="fa fa-long-arrow-alt-right"></i>
+                                    <span data-key="t-dashboard">Vet Appointment</span>
+                                </a>
+                            </li>
+                        {{-- @endcan --}}
+                    </ul>
+                </li>
+
+
                 {{-- @can('order-management')
                     <li>
                         <a href="javascript: void(0);" class="has-arrow">

@@ -4,11 +4,14 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\MenuController;
 use App\Http\Controllers\Admin\EBookController;
+use App\Http\Controllers\Admin\DoctorController;
 use App\Http\Controllers\Admin\ClinicsController;
 use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\DoctorTimeController;
 use App\Http\Controllers\Veterinarian\LoginController;
 use App\Http\Controllers\Admin\RegisteredPetController;
+use App\Http\Controllers\Admin\DoctorLocationController;
 use App\Http\Controllers\veterinarian\RegisterController;
 use App\Http\Controllers\Veterinarian\VeterinarianLoginController;
 use App\Http\Controllers\veterinarian\VeterinarianRegisterController;
@@ -95,19 +98,59 @@ Route::group(['middleware' => ['auth']], function () {
             Route::get('get-e-book', [EBookController::class, 'getAjaxtEbookData'])->name('get-e-book');
         });
 
+        Route::group([
+            'prefix' => 'doctor',
+            'as' => 'doctor.'
+        ], function () {
+            Route::get('/', [DoctorController::class, 'index'])->name('index');
+            Route::get('/change-status/{id}', [DoctorController::class, 'activation'])->name('change-status');
+            Route::get('get-veterinarian', [DoctorController::class, 'getAjaxVeterinarianData'])->name('get-veterinarian');
+        });
+
     });
     
 
 });
 
-Route::prefix('admin/veterinarian')->group(function () {
+Route::prefix('/veterinarian')->group(function () {
 
     Route::get('/dashboard', [VeterinarianDashboardController::class, 'index'])->name('veterinarian.dashboard');
     Route::get('/login', [VeterinarianLoginController::class, 'index'])->name('veterinarian.login');
     Route::post('/login/check', [VeterinarianLoginController::class, 'checklogin'])->name('veterinarian.login.check');
-    Route::get('/register', [VeterinarianRegisterController::class, 'index'])->name('veterinarian.register');
+    Route::get('/ c', [VeterinarianRegisterController::class, 'index'])->name('veterinarian.register');
     Route::post('/register/store', [VeterinarianRegisterController::class, 'store'])->name('veterinarian.register.store');
     Route::post('/logout', [VeterinarianLoginController::class, 'logout'])->name('veterinarian.logout');
+
+    Route::group([
+        'prefix' => 'booking-time',
+        'as' => 'booking-time.'
+    ], function () {
+        Route::get('/', [DoctorTimeController::class, 'index'])->name('index');
+        Route::get('/create', [DoctorTimeController::class, 'create'])->name('create');
+        Route::post('/store', [DoctorTimeController::class, 'store'])->name('store');
+        Route::get('/edit/{id}', [DoctorTimeController::class, 'show'])->name('show');
+        Route::get('/get-booking-time', [DoctorTimeController::class, 'getAjaxDoctorBookingTimeData'])->name('get-booking-time');
+        Route::put('/update/{id}', [DoctorTimeController::class, 'update'])->name('update');
+        Route::get('/change-status/{id}', [DoctorTimeController::class, 'activation'])->name('change-status');
+        Route::delete('/delete/{id}', [DoctorTimeController::class, 'destroy'])->name('delete');
+
+    });
+
+    Route::group([
+        'prefix' => 'booking-location',
+        'as' => 'booking-location.'
+    ], function () {
+        Route::get('/', [DoctorLocationController::class, 'index'])->name('index');
+        Route::get('/create', [DoctorLocationController::class, 'create'])->name('create');
+        Route::post('/store', [DoctorLocationController::class, 'store'])->name('store');
+        Route::get('/edit/{id}', [DoctorLocationController::class, 'show'])->name('show');
+        Route::get('/get-booking-location', [DoctorLocationController::class, 'getAjaxDoctorLocationData'])->name('get-booking-location');
+        Route::put('/update/{id}', [DoctorLocationController::class, 'update'])->name('update');
+        Route::get('/change-status/{id}', [DoctorLocationController::class, 'activation'])->name('change-status');
+        Route::delete('/delete/{id}', [DoctorLocationController::class, 'destroy'])->name('delete');
+
+    });
+
 
 
 });
