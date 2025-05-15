@@ -7,7 +7,9 @@ use App\Http\Controllers\Api\ApiMenuController;
 use App\Http\Controllers\Api\ApiEbookController;
 use App\Http\Controllers\Api\ApiLoginController;
 use App\Http\Controllers\Api\ApiRegisterController;
+use App\Http\Controllers\Api\ApiAppointmentController;
 use App\Http\Controllers\Api\ApiPetRegisterController;
+use App\Http\Controllers\Api\ApiVeterinarianController;
 
 Route::post('/login', [ApiLoginController::class, 'login'])->name('api.login');
 Route::post('/register', [ApiRegisterController::class, 'store'])->name('api.register');
@@ -32,6 +34,14 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::prefix('e-book')->group(function () {
         Route::post('/', [ApiEbookController::class, 'getPetWise']);
         Route::post('/store', [ApiEbookController::class, 'store']);
+    });
+
+    Route::prefix('veterinarian')->group(function () {
+        Route::get('/', [ApiVeterinarianController::class, 'index']);
+    });
+
+    Route::prefix('appointment')->group(function () {
+        Route::post('/store', [ApiAppointmentController::class, 'store']);
     });
 
 });

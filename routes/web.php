@@ -4,12 +4,17 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\MenuController;
 use App\Http\Controllers\Admin\EBookController;
+use App\Http\Controllers\Admin\DoctorController;
 use App\Http\Controllers\Admin\ClinicsController;
 use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\Veterinarian\LoginController;
+use App\Http\Controllers\Admin\DoctorTimeController;
+use App\Http\Controllers\Admin\AppointmentController;
 use App\Http\Controllers\Admin\RegisteredPetController;
-use App\Http\Controllers\veterinarian\RegisterController;
+use App\Http\Controllers\Admin\DoctorLocationController;
+use App\Http\Controllers\ShopVendor\ShopVendorLoginController;
+use App\Http\Controllers\ShopVendor\ShopVendorDasboardController;
+use App\Http\Controllers\ShopVendor\ShopVendorRegisterController;
 use App\Http\Controllers\Veterinarian\VeterinarianLoginController;
 use App\Http\Controllers\veterinarian\VeterinarianRegisterController;
 use App\Http\Controllers\Veterinarian\VeterinarianDashboardController;
@@ -85,7 +90,6 @@ Route::group(['middleware' => ['auth']], function () {
 
         });
 
-
         Route::group([
             'prefix' => 'e-book',
             'as' => 'e-book.'
@@ -95,12 +99,19 @@ Route::group(['middleware' => ['auth']], function () {
             Route::get('get-e-book', [EBookController::class, 'getAjaxtEbookData'])->name('get-e-book');
         });
 
-    });
-    
+        Route::group([
+            'prefix' => 'doctor',
+            'as' => 'doctor.'
+        ], function () {
+            Route::get('/', [DoctorController::class, 'index'])->name('index');
+            Route::get('/change-status/{id}', [DoctorController::class, 'activation'])->name('change-status');
+            Route::get('get-veterinarian', [DoctorController::class, 'getAjaxVeterinarianData'])->name('get-veterinarian');
+        });
 
+    });
 });
 
-Route::prefix('admin/veterinarian')->group(function () {
+Route::prefix('/veterinarian')->group(function () {
 
     Route::get('/dashboard', [VeterinarianDashboardController::class, 'index'])->name('veterinarian.dashboard');
     Route::get('/login', [VeterinarianLoginController::class, 'index'])->name('veterinarian.login');
@@ -109,6 +120,57 @@ Route::prefix('admin/veterinarian')->group(function () {
     Route::post('/register/store', [VeterinarianRegisterController::class, 'store'])->name('veterinarian.register.store');
     Route::post('/logout', [VeterinarianLoginController::class, 'logout'])->name('veterinarian.logout');
 
+    
+    Route::group([
+        'prefix' => 'appointment',
+        'as' => 'appointment.'
+    ], function () {
+        Route::get('/', [AppointmentController::class, 'index'])->name('index');
+        Route::post('status-change', [AppointmentController::class, 'update'])->name('status-change');
+        Route::get('/get-appointment', [AppointmentController::class, 'getAjaxAppointmentData'])->name('get-appointment');
+        Route::get('/edit/{id}', [AppointmentController::class, 'show'])->name('show');
+    });
+
+
+    Route::group([
+        'prefix' => 'booking-time',
+        'as' => 'booking-time.'
+    ], function () {
+        Route::get('/', [DoctorTimeController::class, 'index'])->name('index');
+        Route::get('/create', [DoctorTimeController::class, 'create'])->name('create');
+        Route::post('/store', [DoctorTimeController::class, 'store'])->name('store');
+        Route::get('/edit/{id}', [DoctorTimeController::class, 'show'])->name('show');
+        Route::get('/get-booking-time', [DoctorTimeController::class, 'getAjaxDoctorBookingTimeData'])->name('get-booking-time');
+        Route::put('/update/{id}', [DoctorTimeController::class, 'update'])->name('update');
+        Route::get('/change-status/{id}', [DoctorTimeController::class, 'activation'])->name('change-status');
+        Route::delete('/delete/{id}', [DoctorTimeController::class, 'destroy'])->name('delete');
+
+    });
+
+    Route::group([
+        'prefix' => 'booking-location',
+        'as' => 'booking-location.'
+    ], function () {
+        Route::get('/', [DoctorLocationController::class, 'index'])->name('index');
+        Route::get('/create', [DoctorLocationController::class, 'create'])->name('create');
+        Route::post('/store', [DoctorLocationController::class, 'store'])->name('store');
+        Route::get('/edit/{id}', [DoctorLocationController::class, 'show'])->name('show');
+        Route::get('/get-booking-location', [DoctorLocationController::class, 'getAjaxDoctorLocationData'])->name('get-booking-location');
+        Route::put('/update/{id}', [DoctorLocationController::class, 'update'])->name('update');
+        Route::get('/change-status/{id}', [DoctorLocationController::class, 'activation'])->name('change-status');
+        Route::delete('/delete/{id}', [DoctorLocationController::class, 'destroy'])->name('delete');
+    });
+});
+
+
+Route::prefix('/shop-vendor')->group(function () {
+
+    Route::get('/login', [ShopVendorLoginController::class, 'index'])->name('shop-vendor.login');
+    Route::post('/login/check', [ShopVendorLoginController::class, 'checklogin'])->name('shop-vendor.login.check');
+    Route::get('/register', [ShopVendorRegisterController::class, 'index'])->name('shop-vendor.register');
+    Route::post('/register/store', [ShopVendorRegisterController::class, 'store'])->name('shop-vendor.register.store');
+    Route::post('/logout', [ShopVendorLoginController::class, 'logout'])->name('shop-vendor.logout');
+    Route::get('/dashboard', [ShopVendorDasboardController::class, 'index'])->name('shop-vendor.dashboard');
 
 });
 

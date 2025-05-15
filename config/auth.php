@@ -44,6 +44,10 @@ return [
             'driver' => 'session',
             'provider' => 'veterinarians',
         ],
+        'shopvendor' => [
+            'driver' => 'session',
+            'provider' => 'shopvendor',
+        ],
     ],
 
     /*
@@ -72,6 +76,11 @@ return [
         'veterinarians' => [
             'driver' => 'eloquent',
             'model' => env('AUTH_MODEL', App\Models\Veterinarian::class),
+        ],
+
+        'shopvendor' => [
+            'driver' => 'eloquent',
+            'model' => env('AUTH_MODEL', App\Models\ShopVendor::class),
         ],
 
         // 'users' => [
