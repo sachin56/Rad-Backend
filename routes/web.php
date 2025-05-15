@@ -12,6 +12,9 @@ use App\Http\Controllers\Admin\DoctorTimeController;
 use App\Http\Controllers\Admin\AppointmentController;
 use App\Http\Controllers\Admin\RegisteredPetController;
 use App\Http\Controllers\Admin\DoctorLocationController;
+use App\Http\Controllers\ShopVendor\ShopVendorLoginController;
+use App\Http\Controllers\ShopVendor\ShopVendorDasboardController;
+use App\Http\Controllers\ShopVendor\ShopVendorRegisterController;
 use App\Http\Controllers\Veterinarian\VeterinarianLoginController;
 use App\Http\Controllers\veterinarian\VeterinarianRegisterController;
 use App\Http\Controllers\Veterinarian\VeterinarianDashboardController;
@@ -157,6 +160,18 @@ Route::prefix('/veterinarian')->group(function () {
         Route::get('/change-status/{id}', [DoctorLocationController::class, 'activation'])->name('change-status');
         Route::delete('/delete/{id}', [DoctorLocationController::class, 'destroy'])->name('delete');
     });
+});
+
+
+Route::prefix('/shop-vendor')->group(function () {
+
+    Route::get('/login', [ShopVendorLoginController::class, 'index'])->name('shop-vendor.login');
+    Route::post('/login/check', [ShopVendorLoginController::class, 'checklogin'])->name('shop-vendor.login.check');
+    Route::get('/register', [ShopVendorRegisterController::class, 'index'])->name('shop-vendor.register');
+    Route::post('/register/store', [ShopVendorRegisterController::class, 'store'])->name('shop-vendor.register.store');
+    Route::post('/logout', [ShopVendorLoginController::class, 'logout'])->name('shop-vendor.logout');
+    Route::get('/dashboard', [ShopVendorDasboardController::class, 'index'])->name('shop-vendor.dashboard');
+
 });
 
 require __DIR__.'/auth.php';
