@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Helpers\StorageHelper;
 use App\Helpers\APIResponseMessage;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class ApiLoginController extends Controller
@@ -117,4 +118,6 @@ class ApiLoginController extends Controller
             'message' => 'User logged out successfully.'
         ]);
     }
+
+
 }

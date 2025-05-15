@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('veterinarian.layouts.app')
 
 @section('title')
     {{__('Dashboard')}}
@@ -41,7 +41,7 @@
                     <div class="card-body">
                         <div class="row align-items-center">
                             <div class="col-6">
-                                <span class="text-muted mb-3 lh-1 d-block text-truncate">All Registered Users</span>
+                                <span class="text-muted mb-3 lh-1 d-block text-truncate">All Orders</span>
                                 <h4 class="mb-3">
                                     <span class="counter-value" >0</span>
                                 </h4>
@@ -60,7 +60,7 @@
                     <div class="card-body">
                         <div class="row align-items-center">
                             <div class="col-6">
-                                <span class="text-muted mb-3 lh-1 d-block text-truncate">All Registered Vet</span>
+                                <span class="text-muted mb-3 lh-1 d-block text-truncate">Confirmed Orders</span>
                                 <h4 class="mb-3">
                                     <span class="counter-value" >0</span>
                                 </h4>
@@ -70,7 +70,7 @@
                 </div><!-- end card -->
             </div><!-- end col-->
 
-            {{-- <div class="col-xl-3 col-md-6">
+            <div class="col-xl-3 col-md-6">
                 <!-- card -->
                 <div class="card card-h-100">
                     <!-- card body -->
@@ -85,9 +85,9 @@
                         </div>
                     </div><!-- end card body -->
                 </div><!-- end card -->
-            </div><!-- end col --> --}}
+            </div><!-- end col -->
 
-            {{-- <div class="col-xl-3 col-md-6">
+            <div class="col-xl-3 col-md-6">
                 <!-- card -->
                 <div class="card card-h-100">
                     <!-- card body -->
@@ -103,14 +103,14 @@
                         </div>
                     </div><!-- end card body -->
                 </div><!-- end card -->
-            </div><!-- end col --> --}}
+            </div><!-- end col -->
 
 
         </div>
         <div class="row mx-4">
 
 
-            {{-- <div class="col-xl-3 col-md-6">
+            <div class="col-xl-3 col-md-6">
                 <!-- card -->
                 <div class="card card-h-100">
                     <!-- card body -->
@@ -186,7 +186,7 @@
                             </div>
                         </div>
                     </div><!-- end card body -->
-                </div><!-- end card --> --}}
+                </div><!-- end card -->
 
 
             </div>
@@ -205,16 +205,5 @@
 
             </div>
         </div>
-
-
-
-
-    </div>
-
-@endsection
-
-@section('scripts')
-
-   
 
 @endsection

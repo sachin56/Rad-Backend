@@ -40,6 +40,10 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'veterinarian' => [
+            'driver' => 'session',
+            'provider' => 'veterinarians',
+        ],
     ],
 
     /*
@@ -63,6 +67,11 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => env('AUTH_MODEL', App\Models\User::class),
+        ],
+
+        'veterinarians' => [
+            'driver' => 'eloquent',
+            'model' => env('AUTH_MODEL', App\Models\Veterinarian::class),
         ],
 
         // 'users' => [
