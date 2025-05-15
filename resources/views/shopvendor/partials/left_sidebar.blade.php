@@ -30,7 +30,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="{{route('booking-location.index')}}">
+                                <a href="{{route('products.index')}}">
                                     <i class="fa fa-long-arrow-alt-right"></i>
                                     <span data-key="t-dashboard">Shop Product</span>
                                 </a>

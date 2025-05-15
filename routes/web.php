@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\DoctorTimeController;
 use App\Http\Controllers\Admin\AppointmentController;
 use App\Http\Controllers\Admin\RegisteredPetController;
 use App\Http\Controllers\Admin\DoctorLocationController;
+use App\Http\Controllers\ShopVendor\ShopProductController;
 use App\Http\Controllers\ShopVendor\ShopVendorLoginController;
 use App\Http\Controllers\ShopVendor\ShopVendorDasboardController;
 use App\Http\Controllers\ShopVendor\ShopVendorRegisterController;
@@ -185,6 +186,20 @@ Route::prefix('/shop-vendor')->group(function () {
         Route::put('/update/{id}', [ShopVendorCategoriesController::class, 'update'])->name('update');
         Route::get('/change-status/{id}', [ShopVendorCategoriesController::class, 'activation'])->name('change-status');
         Route::delete('/delete/{id}', [ShopVendorCategoriesController::class, 'destroy'])->name('delete');
+    });
+
+    Route::group([
+        'prefix' => 'products',
+        'as' => 'products.'
+    ], function () {
+        Route::get('/', [ShopProductController::class, 'index'])->name('index');
+        Route::get('/create', [ShopProductController::class, 'create'])->name('create');
+        Route::post('/store', [ShopProductController::class, 'store'])->name('store');
+        Route::get('/edit/{id}', [ShopProductController::class, 'show'])->name('show');
+        Route::get('/get-products', [ShopProductController::class, 'getAjaxShopProductData'])->name('get-products');
+        Route::put('/update/{id}', [ShopProductController::class, 'update'])->name('update');
+        Route::get('/change-status/{id}', [ShopProductController::class, 'activation'])->name('change-status');
+        Route::delete('/delete/{id}', [ShopProductController::class, 'destroy'])->name('delete');
     });
 
 });

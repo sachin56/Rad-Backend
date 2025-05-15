@@ -10,7 +10,9 @@ use App\Http\Controllers\Api\ApiRegisterController;
 use App\Http\Controllers\Api\ShopCategoryController;
 use App\Http\Controllers\Api\ApiAppointmentController;
 use App\Http\Controllers\Api\ApiPetRegisterController;
+use App\Http\Controllers\Api\ApiShopProductController;
 use App\Http\Controllers\Api\ApiVeterinarianController;
+use App\Http\Controllers\ShopVendor\ShopProductController;
 
 Route::post('/login', [ApiLoginController::class, 'login'])->name('api.login');
 Route::post('/register', [ApiRegisterController::class, 'store'])->name('api.register');
@@ -47,6 +49,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
     Route::prefix('shop-vendor')->group(function () {
         Route::get('/categories', [ShopCategoryController::class, 'index']);
+        Route::get('/product', [ApiShopProductController::class, 'index']);
+
     });
 
 });
