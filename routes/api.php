@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\ApiMenuController;
 use App\Http\Controllers\Api\ApiEbookController;
 use App\Http\Controllers\Api\ApiLoginController;
 use App\Http\Controllers\Api\ApiRegisterController;
+use App\Http\Controllers\Api\ShopCategoryController;
 use App\Http\Controllers\Api\ApiAppointmentController;
 use App\Http\Controllers\Api\ApiPetRegisterController;
 use App\Http\Controllers\Api\ApiVeterinarianController;
@@ -42,6 +43,10 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
     Route::prefix('appointment')->group(function () {
         Route::post('/store', [ApiAppointmentController::class, 'store']);
+    });
+
+    Route::prefix('shop-vendor')->group(function () {
+        Route::get('/categories', [ShopCategoryController::class, 'index']);
     });
 
 });

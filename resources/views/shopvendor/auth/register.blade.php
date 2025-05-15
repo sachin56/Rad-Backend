@@ -6,7 +6,7 @@
 <form method="POST" class="mt-4 pt-2" action="{{route('shop-vendor.register.store')}}">
     @csrf
     <div class="mb-3">
-        <label class="form-label">Name</label>
+        <label class="form-label">Shop Name</label>
         <input id="name" type="name" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
         @error('name')
         <span class="invalid-feedback" role="alert">

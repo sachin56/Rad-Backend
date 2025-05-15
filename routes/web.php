@@ -16,6 +16,7 @@ use App\Http\Controllers\ShopVendor\ShopVendorLoginController;
 use App\Http\Controllers\ShopVendor\ShopVendorDasboardController;
 use App\Http\Controllers\ShopVendor\ShopVendorRegisterController;
 use App\Http\Controllers\Veterinarian\VeterinarianLoginController;
+use App\Http\Controllers\ShopVendor\ShopVendorCategoriesController;
 use App\Http\Controllers\veterinarian\VeterinarianRegisterController;
 use App\Http\Controllers\Veterinarian\VeterinarianDashboardController;
 
@@ -171,6 +172,20 @@ Route::prefix('/shop-vendor')->group(function () {
     Route::post('/register/store', [ShopVendorRegisterController::class, 'store'])->name('shop-vendor.register.store');
     Route::post('/logout', [ShopVendorLoginController::class, 'logout'])->name('shop-vendor.logout');
     Route::get('/dashboard', [ShopVendorDasboardController::class, 'index'])->name('shop-vendor.dashboard');
+
+    Route::group([
+        'prefix' => 'categories',
+        'as' => 'categories.'
+    ], function () {
+        Route::get('/', [ShopVendorCategoriesController::class, 'index'])->name('index');
+        Route::get('/create', [ShopVendorCategoriesController::class, 'create'])->name('create');
+        Route::post('/store', [ShopVendorCategoriesController::class, 'store'])->name('store');
+        Route::get('/edit/{id}', [ShopVendorCategoriesController::class, 'show'])->name('show');
+        Route::get('/get-categories', [ShopVendorCategoriesController::class, 'getAjaxShopCategoryData'])->name('get-categories');
+        Route::put('/update/{id}', [ShopVendorCategoriesController::class, 'update'])->name('update');
+        Route::get('/change-status/{id}', [ShopVendorCategoriesController::class, 'activation'])->name('change-status');
+        Route::delete('/delete/{id}', [ShopVendorCategoriesController::class, 'destroy'])->name('delete');
+    });
 
 });
 
