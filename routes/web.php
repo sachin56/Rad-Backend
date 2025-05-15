@@ -59,7 +59,7 @@ Route::group(['middleware' => ['auth']], function () {
                 Route::delete('/delete/{id}', [MenuController::class, 'destroy'])->name('delete');
 
             });
-
+q
             Route::group([
                 'prefix' => 'clinics',
                 'as' => 'clinics.'
@@ -120,7 +120,7 @@ Route::prefix('/veterinarian')->group(function () {
     Route::post('/register/store', [VeterinarianRegisterController::class, 'store'])->name('veterinarian.register.store');
     Route::post('/logout', [VeterinarianLoginController::class, 'logout'])->name('veterinarian.logout');
 
-    
+
     Route::group([
         'prefix' => 'appointment',
         'as' => 'appointment.'
