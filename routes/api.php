@@ -14,6 +14,7 @@ use App\Http\Controllers\Api\ApiPetRegisterController;
 use App\Http\Controllers\Api\ApiShopProductController;
 use App\Http\Controllers\Api\ApiVeterinarianController;
 use App\Http\Controllers\ShopVendor\ShopProductController;
+use App\Http\Controllers\Api\ApiPetSitterRequestController;
 
 Route::post('/login', [ApiLoginController::class, 'login'])->name('api.login');
 Route::post('/register', [ApiRegisterController::class, 'store'])->name('api.register');
@@ -52,6 +53,11 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::get('/', [ApiShopController::class, 'index']);
         Route::get('/categories', [ShopCategoryController::class, 'index']);
         Route::get('/product', [ApiShopProductController::class, 'index']);
+
+    });
+
+    Route::prefix('pet-sitter')->group(function () {
+        Route::post('/request', [ApiPetSitterRequestController::class, 'store']);
 
     });
 

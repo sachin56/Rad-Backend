@@ -14,7 +14,10 @@ use App\Http\Controllers\Admin\RegisteredPetController;
 use App\Http\Controllers\Admin\DoctorLocationController;
 use App\Http\Controllers\ShopVendor\ShopProductController;
 use App\Http\Controllers\ShopVendor\ShopProfileController;
+use App\Http\Controllers\PetSitter\PetSitterLoginController;
 use App\Http\Controllers\ShopVendor\ShopVendorLoginController;
+use App\Http\Controllers\PetSitter\PetSitterRegisterController;
+use App\Http\Controllers\PetSitter\PetSitterDashboardController;
 use App\Http\Controllers\ShopVendor\ShopVendorDasboardController;
 use App\Http\Controllers\ShopVendor\ShopVendorRegisterController;
 use App\Http\Controllers\Veterinarian\VeterinarianLoginController;
@@ -206,6 +209,19 @@ Route::prefix('/shop-vendor')->group(function () {
         Route::get('/change-status/{id}', [ShopProductController::class, 'activation'])->name('change-status');
         Route::delete('/delete/{id}', [ShopProductController::class, 'destroy'])->name('delete');
     });
+
+});
+
+Route::prefix('/pet-sitter')->group(function () {
+
+    Route::get('/login', [PetSitterLoginController::class, 'index'])->name('pet-sitter.login');
+    Route::post('/login/check', [PetSitterLoginController::class, 'checklogin'])->name('pet-sitter.login.check');
+    Route::get('/register', [PetSitterRegisterController::class, 'index'])->name('pet-sitter.register');
+    Route::post('/register/store', [PetSitterRegisterController::class, 'store'])->name('pet-sitter.register.store');
+    Route::post('/logout', [PetSitterLoginController::class, 'logout'])->name('pet-sitter.logout');
+    Route::get('/dashboard', [PetSitterDashboardController::class, 'index'])->name('pet-sitter.dashboard');
+    Route::get('/profile', [ShopProfileController::class, 'index'])->name('pet-sitter.profile');
+    Route::post('/profile/store', [ShopProfileController::class, 'store'])->name('pet-sitter.profile.store');
 
 });
 
