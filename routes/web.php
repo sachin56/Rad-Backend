@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\AppointmentController;
 use App\Http\Controllers\Admin\RegisteredPetController;
 use App\Http\Controllers\Admin\DoctorLocationController;
 use App\Http\Controllers\ShopVendor\ShopProductController;
+use App\Http\Controllers\ShopVendor\ShopProfileController;
 use App\Http\Controllers\ShopVendor\ShopVendorLoginController;
 use App\Http\Controllers\ShopVendor\ShopVendorDasboardController;
 use App\Http\Controllers\ShopVendor\ShopVendorRegisterController;
@@ -173,6 +174,10 @@ Route::prefix('/shop-vendor')->group(function () {
     Route::post('/register/store', [ShopVendorRegisterController::class, 'store'])->name('shop-vendor.register.store');
     Route::post('/logout', [ShopVendorLoginController::class, 'logout'])->name('shop-vendor.logout');
     Route::get('/dashboard', [ShopVendorDasboardController::class, 'index'])->name('shop-vendor.dashboard');
+    Route::get('/profile', [ShopProfileController::class, 'index'])->name('shop-vendor.profile');
+    Route::post('/profile/store', [ShopProfileController::class, 'store'])->name('shop-vendor.profile.store');
+
+
 
     Route::group([
         'prefix' => 'categories',

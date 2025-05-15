@@ -4,29 +4,30 @@ namespace App\Http\Controllers\Api;
 
 use App\Models\ShopVendor;
 use Illuminate\Http\Request;
+use App\Helpers\StorageHelper;
 use App\Helpers\APIResponseMessage;
 use App\Http\Controllers\Controller;
 
 class ApiShopController extends Controller
 {
-       public function index()
+    public function index()
     {
-        $menucategories = ShopVendor::select('id', 'name')
-            ->where('status', 'Y')
-            ->orderBy('order', 'asc') 
+        $shopVendors = ShopVendor::select('id', 'name','email','address','phone_number','logo','shop_name')
+            ->orderBy('id', 'asc') 
             ->get();
 
-        foreach($menucategories as $menucategory)
+        foreach($shopVendors as $shopVendor)
         {
-
+               $shopVendor->logoImageUrl = $shopVendor->logo 
+                ? (new StorageHelper('shopproduct', $shopVendor->logo))->getUrl() 
+                : null;
             unset(
-                $menucategory->logo,
-                $menucategory->background_image,
+                $shopVendor->logo,
             );
 
         }
 
-        if ($menucategories->isEmpty()) {
+        if ($shopVendors->isEmpty()) {
             return response()->json([
                 'status' => APIResponseMessage::ERROR_STATUS,
                 'message' => APIResponseMessage::NODATA,
@@ -36,7 +37,7 @@ class ApiShopController extends Controller
         return response()->json([
             'status' => APIResponseMessage::SUCCESS_STATUS,
             'message' => APIResponseMessage::DATAFETCHED,
-            'data' => $menucategories,
+            'data' => $shopVendors,
         ], 200);
     }
 }

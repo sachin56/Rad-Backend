@@ -15,6 +15,10 @@ class ShopVendor extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'address',
+        'phone_number',
+        'logo',
+        'shop_name',
         'password',
     ];
 }

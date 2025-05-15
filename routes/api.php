@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\ApiPetController;
 use App\Http\Controllers\Api\ApiMenuController;
+use App\Http\Controllers\Api\ApiShopController;
 use App\Http\Controllers\Api\ApiEbookController;
 use App\Http\Controllers\Api\ApiLoginController;
 use App\Http\Controllers\Api\ApiRegisterController;
@@ -48,6 +49,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     });
 
     Route::prefix('shop-vendor')->group(function () {
+        Route::get('/', [ApiShopController::class, 'index']);
         Route::get('/categories', [ShopCategoryController::class, 'index']);
         Route::get('/product', [ApiShopProductController::class, 'index']);
 

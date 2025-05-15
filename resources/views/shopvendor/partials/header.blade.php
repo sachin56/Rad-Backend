@@ -133,6 +133,10 @@
                             Logout
                         </button>
                     </form>
+                    <a href="{{ route('shop-vendor.profile') }}" class="dropdown-item">
+                        <i class="mdi mdi-logout font-size-16 align-middle me-1"></i>
+                        Profile
+                    </a>
                 </div>
             </div>
 
