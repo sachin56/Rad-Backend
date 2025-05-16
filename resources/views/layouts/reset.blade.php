@@ -10,17 +10,17 @@
     <meta content="Themesbrand" name="author"/>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- App favicon -->
-    <link rel="shortcut icon" href="{{url('assets/images/favicon.ico')}}">
+    <link rel="shortcut icon" href="{{url(env('ASSETS_PATH').'/images/favicon.ico')}}">
 
     <!-- preloader css -->
-    <link rel="stylesheet" href="{{url('assets/css/preloader.min.css')}}" type="text/css"/>
+    <link rel="stylesheet" href="{{url(env('ASSETS_PATH').'/css/preloader.min.css')}}" type="text/css"/>
 
     <!-- Bootstrap Css -->
-    <link href="{{url('assets/css/bootstrap.min.css')}}" id="bootstrap-style" rel="stylesheet" type="text/css"/>
+    <link href="{{url(env('ASSETS_PATH').'/css/bootstrap.min.css')}}" id="bootstrap-style" rel="stylesheet" type="text/css"/>
     <!-- Icons Css -->
-    <link href="{{url('assets/css/icons.min.css')}}" rel="stylesheet" type="text/css"/>
+    <link href="{{url(env('ASSETS_PATH').'/css/icons.min.css')}}" rel="stylesheet" type="text/css"/>
     <!-- App Css-->
-    <link href="{{url('assets/css/app.min.css')}}" id="app-style" rel="stylesheet" type="text/css"/>
+    <link href="{{url(env('ASSETS_PATH').'/css/app.min.css')}}" id="app-style" rel="stylesheet" type="text/css"/>
 
 </head>
 
@@ -36,7 +36,7 @@
                         <div class="d-flex flex-column h-100">
                             <div class="mb-4 mb-md-5 text-center">
                                 <a href="" class="d-block auth-logo">
-                                    <img src="{{url('assets/images/os.png')}}" alt="" height="28"> <span
+                                    <img src="{{url(env('ASSETS_PATH').'/images/os.png')}}" alt="" height="28"> <span
                                         class="logo-txt"></span>
                                 </a>
                             </div>
@@ -67,7 +67,7 @@
             <!-- end col -->
             <div class="col-xxl-9 col-lg-8 col-md-7">
                 <div class="auth-bg pt-md-5 p-4 d-flex">
-                    <div class="bg-overlay" style="background-image: url("{{url('assets/images/kt.jpg')}}");
+                    <div class="bg-overlay" style="background-image: url("{{url(env('ASSETS_PATH').'/images/kt.jpg')}}");
                     background-size: cover;" >
                 </div>
                 <ul class="bg-bubbles">
@@ -116,16 +116,16 @@
 
 
 <!-- JAVASCRIPT -->
-<script src="{{url('assets/libs/jquery/jquery.min.js')}}"></script>
-<script src="{{url('assets/libs/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-<script src="{{url('assets/libs/metismenu/metisMenu.min.js')}}"></script>
-<script src="{{url('assets/libs/simplebar/simplebar.min.js')}}"></script>
-<script src="{{url('assets/libs/node-waves/waves.min.js')}}"></script>
-<script src="{{url('assets/libs/feather-icons/feather.min.js')}}"></script>
+<script src="{{url(env('ASSETS_PATH').'/libs/jquery/jquery.min.js')}}"></script>
+<script src="{{url(env('ASSETS_PATH').'/libs/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+<script src="{{url(env('ASSETS_PATH').'/libs/metismenu/metisMenu.min.js')}}"></script>
+<script src="{{url(env('ASSETS_PATH').'/libs/simplebar/simplebar.min.js')}}"></script>
+<script src="{{url(env('ASSETS_PATH').'/libs/node-waves/waves.min.js')}}"></script>
+<script src="{{url(env('ASSETS_PATH').'/libs/feather-icons/feather.min.js')}}"></script>
 <!-- pace js -->
-<script src="{{url('assets/libs/pace-js/pace.min.js')}}"></script>
+<script src="{{url(env('ASSETS_PATH').'/libs/pace-js/pace.min.js')}}"></script>
 <!-- password addon init -->
-<script src="{{url('assets/js/pages/pass-addon.init.js')}}"></script>
+<script src="{{url(env('ASSETS_PATH').'/js/pages/pass-addon.init.js')}}"></script>
 
 </body>
 

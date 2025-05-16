@@ -65,5 +65,5 @@
     @endcan
 @endsection
 @section('scripts')
-    <script src="{{url('assets/js/admin/user_role.js')}}"></script>
+    <script src="{{url(env('ASSETS_PATH').'/js/admin/user_role.js')}}"></script>
 @endsection

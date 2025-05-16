@@ -1,4 +1,4 @@
-@extends('shopvendor.layouts.app')
+@extends('petsitter.layouts.app')
 
 @section('title')
     {{__('Dashboard')}}

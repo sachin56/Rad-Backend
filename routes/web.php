@@ -16,6 +16,7 @@ use App\Http\Controllers\ShopVendor\ShopProductController;
 use App\Http\Controllers\ShopVendor\ShopProfileController;
 use App\Http\Controllers\PetSitter\PetSitterLoginController;
 use App\Http\Controllers\ShopVendor\ShopVendorLoginController;
+use App\Http\Controllers\PetSitter\PetSitterApprovalController;
 use App\Http\Controllers\PetSitter\PetSitterRegisterController;
 use App\Http\Controllers\PetSitter\PetSitterDashboardController;
 use App\Http\Controllers\ShopVendor\ShopVendorDasboardController;
@@ -222,6 +223,15 @@ Route::prefix('/pet-sitter')->group(function () {
     Route::get('/dashboard', [PetSitterDashboardController::class, 'index'])->name('pet-sitter.dashboard');
     Route::get('/profile', [ShopProfileController::class, 'index'])->name('pet-sitter.profile');
     Route::post('/profile/store', [ShopProfileController::class, 'store'])->name('pet-sitter.profile.store');
+
+    Route::group([
+        'prefix' => 'apporoval',
+        'as' => 'apporoval.'
+    ], function () {
+        Route::get('/', [PetSitterApprovalController::class, 'index'])->name('index');
+        Route::get('/get-apporoval', [PetSitterApprovalController::class, 'getAjaxPetSitterRequestData'])->name('get-apporoval');
+        Route::get('/change-status/{id}', [PetSitterApprovalController::class, 'update'])->name('change-status');
+    });
 
 });
 

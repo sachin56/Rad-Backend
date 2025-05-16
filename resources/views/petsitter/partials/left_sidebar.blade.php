@@ -19,20 +19,14 @@
                 <li>
                     <a href="javascript: void(0);" class="has-arrow">
                         <i class="bi bi-app-indicator"></i>
-                        <span data-key="t-dashboard">Shop Management</span>
+                        <span data-key="t-dashboard">Pet Sitter Management</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
                         {{-- @can('e-book-view') --}}
                             <li>
-                                <a href="{{route('categories.index')}}">
+                                <a href="{{route('apporoval.index')}}">
                                     <i class="fa fa-long-arrow-alt-right"></i>
-                                    <span data-key="t-dashboard">Shop Categories</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{route('products.index')}}">
-                                    <i class="fa fa-long-arrow-alt-right"></i>
-                                    <span data-key="t-dashboard">Shop Product</span>
+                                    <span data-key="t-dashboard">Approval List</span>
                                 </a>
                             </li>
                         {{-- @endcan --}}
