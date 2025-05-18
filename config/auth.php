@@ -48,6 +48,10 @@ return [
             'driver' => 'session',
             'provider' => 'shopvendor',
         ],
+        'petsitter' => [
+            'driver' => 'session',
+            'provider' => 'petsitter',
+        ],
     ],
 
     /*
@@ -81,6 +85,11 @@ return [
         'shopvendor' => [
             'driver' => 'eloquent',
             'model' => env('AUTH_MODEL', App\Models\ShopVendor::class),
+        ],
+
+        'petsitter' => [
+            'driver' => 'eloquent',
+            'model' => env('AUTH_MODEL', App\Models\PetSitter::class),
         ],
 
         // 'users' => [

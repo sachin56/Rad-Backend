@@ -12,10 +12,17 @@ use App\Http\Controllers\Admin\DoctorTimeController;
 use App\Http\Controllers\Admin\AppointmentController;
 use App\Http\Controllers\Admin\RegisteredPetController;
 use App\Http\Controllers\Admin\DoctorLocationController;
+use App\Http\Controllers\ShopVendor\ShopProductController;
+use App\Http\Controllers\ShopVendor\ShopProfileController;
+use App\Http\Controllers\PetSitter\PetSitterLoginController;
 use App\Http\Controllers\ShopVendor\ShopVendorLoginController;
+use App\Http\Controllers\PetSitter\PetSitterApprovalController;
+use App\Http\Controllers\PetSitter\PetSitterRegisterController;
+use App\Http\Controllers\PetSitter\PetSitterDashboardController;
 use App\Http\Controllers\ShopVendor\ShopVendorDasboardController;
 use App\Http\Controllers\ShopVendor\ShopVendorRegisterController;
 use App\Http\Controllers\Veterinarian\VeterinarianLoginController;
+use App\Http\Controllers\ShopVendor\ShopVendorCategoriesController;
 use App\Http\Controllers\veterinarian\VeterinarianRegisterController;
 use App\Http\Controllers\Veterinarian\VeterinarianDashboardController;
 
@@ -171,6 +178,60 @@ Route::prefix('/shop-vendor')->group(function () {
     Route::post('/register/store', [ShopVendorRegisterController::class, 'store'])->name('shop-vendor.register.store');
     Route::post('/logout', [ShopVendorLoginController::class, 'logout'])->name('shop-vendor.logout');
     Route::get('/dashboard', [ShopVendorDasboardController::class, 'index'])->name('shop-vendor.dashboard');
+    Route::get('/profile', [ShopProfileController::class, 'index'])->name('shop-vendor.profile');
+    Route::post('/profile/store', [ShopProfileController::class, 'store'])->name('shop-vendor.profile.store');
+
+
+
+    Route::group([
+        'prefix' => 'categories',
+        'as' => 'categories.'
+    ], function () {
+        Route::get('/', [ShopVendorCategoriesController::class, 'index'])->name('index');
+        Route::get('/create', [ShopVendorCategoriesController::class, 'create'])->name('create');
+        Route::post('/store', [ShopVendorCategoriesController::class, 'store'])->name('store');
+        Route::get('/edit/{id}', [ShopVendorCategoriesController::class, 'show'])->name('show');
+        Route::get('/get-categories', [ShopVendorCategoriesController::class, 'getAjaxShopCategoryData'])->name('get-categories');
+        Route::put('/update/{id}', [ShopVendorCategoriesController::class, 'update'])->name('update');
+        Route::get('/change-status/{id}', [ShopVendorCategoriesController::class, 'activation'])->name('change-status');
+        Route::delete('/delete/{id}', [ShopVendorCategoriesController::class, 'destroy'])->name('delete');
+    });
+
+    Route::group([
+        'prefix' => 'products',
+        'as' => 'products.'
+    ], function () {
+        Route::get('/', [ShopProductController::class, 'index'])->name('index');
+        Route::get('/create', [ShopProductController::class, 'create'])->name('create');
+        Route::post('/store', [ShopProductController::class, 'store'])->name('store');
+        Route::get('/edit/{id}', [ShopProductController::class, 'show'])->name('show');
+        Route::get('/get-products', [ShopProductController::class, 'getAjaxShopProductData'])->name('get-products');
+        Route::put('/update/{id}', [ShopProductController::class, 'update'])->name('update');
+        Route::get('/change-status/{id}', [ShopProductController::class, 'activation'])->name('change-status');
+        Route::delete('/delete/{id}', [ShopProductController::class, 'destroy'])->name('delete');
+    });
+
+});
+
+Route::prefix('/pet-sitter')->group(function () {
+
+    Route::get('/login', [PetSitterLoginController::class, 'index'])->name('pet-sitter.login');
+    Route::post('/login/check', [PetSitterLoginController::class, 'checklogin'])->name('pet-sitter.login.check');
+    Route::get('/register', [PetSitterRegisterController::class, 'index'])->name('pet-sitter.register');
+    Route::post('/register/store', [PetSitterRegisterController::class, 'store'])->name('pet-sitter.register.store');
+    Route::post('/logout', [PetSitterLoginController::class, 'logout'])->name('pet-sitter.logout');
+    Route::get('/dashboard', [PetSitterDashboardController::class, 'index'])->name('pet-sitter.dashboard');
+    Route::get('/profile', [ShopProfileController::class, 'index'])->name('pet-sitter.profile');
+    Route::post('/profile/store', [ShopProfileController::class, 'store'])->name('pet-sitter.profile.store');
+
+    Route::group([
+        'prefix' => 'apporoval',
+        'as' => 'apporoval.'
+    ], function () {
+        Route::get('/', [PetSitterApprovalController::class, 'index'])->name('index');
+        Route::get('/get-apporoval', [PetSitterApprovalController::class, 'getAjaxPetSitterRequestData'])->name('get-apporoval');
+        Route::get('/change-status/{id}', [PetSitterApprovalController::class, 'update'])->name('change-status');
+    });
 
 });
 

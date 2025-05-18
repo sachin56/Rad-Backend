@@ -46,8 +46,6 @@
                                     <span class="counter-value" >0</span>
                                 </h4>
                             </div>
-
-
                         </div>
                     </div><!-- end card body -->
                 </div><!-- end card -->

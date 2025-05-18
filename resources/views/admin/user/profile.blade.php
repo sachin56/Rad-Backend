@@ -40,7 +40,7 @@
                             <div class="card-body box-profile">
                                 <div class="text-center">
                                     <img class="profile-user-img img-fluid img-circle"
-                                         src="{{url('assets/images/users/avatar-1.jpg')}}" alt="User profile picture">
+                                         src="{{url(env('ASSETS_PATH').'/images/users/avatar-1.jpg')}}" alt="User profile picture">
                                 </div>
                                 <h3 class="profile-username text-center">{{ $user->firstName . ' ' . $user->lastName }}</h3>
                                 <p class="text-muted text-center">{{ $user->email }}</p>
@@ -106,5 +106,5 @@
     @endcan
 @endsection
 @section('scripts')
-    <script src="{{url('assets/js/admin/user.js')}}"></script>
+    <script src="{{url(env('ASSETS_PATH').'/js/admin/user.js')}}"></script>
 @endsection

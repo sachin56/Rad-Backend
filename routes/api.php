@@ -4,12 +4,17 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\ApiPetController;
 use App\Http\Controllers\Api\ApiMenuController;
+use App\Http\Controllers\Api\ApiShopController;
 use App\Http\Controllers\Api\ApiEbookController;
 use App\Http\Controllers\Api\ApiLoginController;
 use App\Http\Controllers\Api\ApiRegisterController;
+use App\Http\Controllers\Api\ShopCategoryController;
 use App\Http\Controllers\Api\ApiAppointmentController;
 use App\Http\Controllers\Api\ApiPetRegisterController;
+use App\Http\Controllers\Api\ApiShopProductController;
 use App\Http\Controllers\Api\ApiVeterinarianController;
+use App\Http\Controllers\ShopVendor\ShopProductController;
+use App\Http\Controllers\Api\ApiPetSitterRequestController;
 
 Route::post('/login', [ApiLoginController::class, 'login'])->name('api.login');
 Route::post('/register', [ApiRegisterController::class, 'store'])->name('api.register');
@@ -42,6 +47,18 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
     Route::prefix('appointment')->group(function () {
         Route::post('/store', [ApiAppointmentController::class, 'store']);
+    });
+
+    Route::prefix('shop-vendor')->group(function () {
+        Route::get('/', [ApiShopController::class, 'index']);
+        Route::get('/categories', [ShopCategoryController::class, 'index']);
+        Route::get('/product', [ApiShopProductController::class, 'index']);
+
+    });
+
+    Route::prefix('pet-sitter')->group(function () {
+        Route::post('/request', [ApiPetSitterRequestController::class, 'store']);
+
     });
 
 });

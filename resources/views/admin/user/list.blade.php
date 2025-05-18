@@ -39,5 +39,5 @@
     @endcan
 @endsection
 @section('scripts')
-    <script src="{{url('assets/js/admin/user.js')}}"></script>
+    <script src="{{url(env('ASSETS_PATH').'/js/admin/user.js')}}"></script>
 @endsection
